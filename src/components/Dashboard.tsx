@@ -29,7 +29,7 @@ export default async function Home() {
         alt="Picture of the author"
         className="pl-40 mb-5"
         />
-        <Link href="/interview" passHref>
+        <Link href="/interview">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
