@@ -1,83 +1,41 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
-    const [nav, setNav] = useState(false);
-
-  const links = [
-    {
-      id: 1,
-      link: "home",
-    },
-    {
-      id: 2,
-      link: "questions",
-    },
-    {
-      id: 3,
-      link: "about",
-    },
-    {
-      id: 4,
-      link: "experience",
-    },
-    {
-      id: 5,
-      link: "contact",
-    },
-  ];
 
   return (
-    <div className="flex justify-between items-center w-full h-20 px-4 text-white bg-black fixed nav">
-      <div>
-        {/* <h1 className="text-5xl font-signature ml-2"><a className="link-underline hover:transition ease-in-out delay-150 hover:underline hover:decoration-solid" href="">Logo</a></h1> */}
-        <h1 className="text-5xl font-signature ml-2">
-          <a
-            className="link-underline link-underline-black"
-            href=""
-            target="_blank"
-            rel="noreferrer"
-          >
-            Logo
-          </a>
-        </h1>
-      </div>
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ ease: "linear", duration: 0.5 }}
+      className="flex justify-between items-center w-full h-20 px-4 text-white bg-gray-800 fixed top-0 z-50"
+    >
+      <Link href="/" className="text-3xl font-bold">
 
-      <ul className="hidden md:flex">
-        {links.map(({ id, link }) => (
-          <li
-            key={id}
-            className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline"
-          >
-            <Link href={link}>{link}</Link>
-          </li>
-        ))}
-      </ul>
+          AuralAI.
 
-      <div
-        onClick={() => setNav(!nav)}
-        className="cursor-pointer pr-4 z-10 text-gray-500 md:hidden"
+      </Link>
+
+      <motion.ul
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.1 }}
+        className="hidden md:flex"
       >
-        {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
-      </div>
+        <li className="mx-4">
+          <Link href="/" className="text-lg font-medium text-gray-300 hover:text-white transition duration-200">
+              Home
 
-      {nav && (
-        <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-black to-gray-800 text-gray-500">
-          {links.map(({ id, link }) => (
-            <li
-              key={id}
-              className="px-4 cursor-pointer capitalize py-6 text-4xl"
-            >
-              <Link onClick={() => setNav(!nav)} href={link}>
-                {link}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+          </Link>
+        </li>
+        <li className="mx-4">
+          <Link href="/about" className="text-lg font-medium text-gray-300 hover:text-white transition duration-200">
+              About
+          </Link>
+        </li>
+      </motion.ul>
+    </motion.nav>
   );
 };
 
